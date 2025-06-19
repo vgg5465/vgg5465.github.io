@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Horizontal Scroll Timeline</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Poppins',sans-serif;background:#111;color:#fff;overflow-x:hidden}
+.timeline-section{height:100vh;display:flex;align-items:center;position:relative;overflow:hidden}
+.timeline{display:flex;height:100%}
+.tl-card{flex:0 0 70vw;margin-right:10vw;background:#fff;border-radius:1rem;padding:4vh 4vw;position:relative;color:#111;display:flex;flex-direction:column;justify-content:center}
+.tl-card:last-child{margin-right:0}
+.tl-card .dot{width:1.2rem;height:1.2rem;border-radius:50%;background:#4caf50;position:absolute;top:2rem;left:2rem}
+.tl-card h3{font-size:4vh;margin-bottom:1vh;color:#111}
+.tl-card h4{font-size:2.5vh;font-weight:400;color:#555}
+.after-content{height:100vh;display:flex;justify-content:center;align-items:center;background:#222}
+</style>
+</head>
+<body>
+<section class="timeline-section">
+  <div class="timeline">
+    <div class="tl-card">
+      <span class="dot"></span>
+      <h3>2024</h3>
+      <h4>Launch eco-friendly product line</h4>
+    </div>
+    <div class="tl-card">
+      <span class="dot"></span>
+      <h3>2025</h3>
+      <h4>Expand to five new cities</h4>
+    </div>
+    <div class="tl-card">
+      <span class="dot"></span>
+      <h3>2026</h3>
+      <h4>Introduce smart irrigation systems</h4>
+    </div>
+    <div class="tl-card">
+      <span class="dot"></span>
+      <h3>2027</h3>
+      <h4>Achieve carbon neutrality</h4>
+    </div>
+    <div class="tl-card">
+      <span class="dot"></span>
+      <h3>2028</h3>
+      <h4>Global outreach program</h4>
+    </div>
+  </div>
+</section>
+<section class="after-content">
+  <h2>End of Timeline</h2>
+</section>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<script>
+  gsap.registerPlugin(ScrollTrigger);
+  const tl = document.querySelector('.timeline');
+  const cards = gsap.utils.toArray('.tl-card');
+  gsap.to(tl, {
+    xPercent: -100 * (cards.length - 1),
+    ease: 'none',
+    scrollTrigger: {
+      trigger: '.timeline-section',
+      pin: true,
+      scrub: 1,
+      end: () => '+=' + (tl.scrollWidth - document.documentElement.clientWidth)
+    }
+  });
+</script>
+</body>
+</html>
