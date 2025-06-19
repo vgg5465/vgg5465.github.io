@@ -1,0 +1,49 @@
+html, body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  height: 100%;
+  overflow-x: hidden;
+}
+
+.parallax-section {
+  height: 100vh;
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.intro {
+  background-image: url('your-image1.jpg');
+}
+
+.info {
+  background-image: url('your-image2.jpg');
+}
+
+.mission {
+  background-image: url('your-image3.jpg');
+}
+
+h1 {
+  font-size: 3rem;
+  margin: 0;
+}
+
+p {
+  font-size: 1.2rem;
+}
+
+.content {
+  background: #ffffff;
+  color: #333;
+  padding: 2rem;
+}
+
+footer.content {
+  text-align: center;
+}
