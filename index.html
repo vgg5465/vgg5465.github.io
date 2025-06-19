@@ -16,6 +16,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600;700&family=Open+Sans:wght@400;500&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
     <!-- Icon Font Stylesheet -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
@@ -31,6 +32,16 @@
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
+    <style>
+        .timeline-section{height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;background:#111;color:#fff}
+        .timeline{display:flex;height:100%}
+        .tl-card{flex:0 0 70vw;margin-right:10vw;background:#fff;border-radius:1rem;padding:4vh 4vw;position:relative;color:#111;display:flex;flex-direction:column;justify-content:center}
+        .tl-card:last-child{margin-right:0}
+        .tl-card .dot{width:1.2rem;height:1.2rem;border-radius:50%;background:#4caf50;position:absolute;top:2rem;left:2rem}
+        .tl-card h3{font-size:4vh;margin-bottom:1vh;color:#111}
+        .tl-card h4{font-size:2.5vh;font-weight:400;color:#555}
+        .after-content{height:100vh;display:flex;justify-content:center;align-items:center;background:#222;color:#fff;font-family:'Poppins',sans-serif}
+    </style>
 </head>
 
 <body>
@@ -349,33 +360,38 @@
 
 
     <!-- Timeline Start -->
-    <div class="container-fluid quote my-5 py-5" data-parallax="scroll" data-image-src="img/carousel-2.jpg">
-        <div class="container py-5">
-            <h1 class="display-5 text-center text-white mb-5">Our Future Milestones</h1>
-            <div class="timeline-wrapper wow fadeIn" data-wow-delay="0.5s">
-                <div class="timeline-item">
-                    <h4>2024</h4>
-                    <p>Launch eco-friendly product line</p>
-                </div>
-                <div class="timeline-item">
-                    <h4>2025</h4>
-                    <p>Expand to five new cities</p>
-                </div>
-                <div class="timeline-item">
-                    <h4>2026</h4>
-                    <p>Introduce smart irrigation systems</p>
-                </div>
-                <div class="timeline-item">
-                    <h4>2027</h4>
-                    <p>Achieve carbon neutrality</p>
-                </div>
-                <div class="timeline-item">
-                    <h4>2028</h4>
-                    <p>Global outreach program</p>
-                </div>
+    <section class="timeline-section">
+        <div class="timeline">
+            <div class="tl-card">
+                <span class="dot"></span>
+                <h3>2024</h3>
+                <h4>Launch eco-friendly product line</h4>
+            </div>
+            <div class="tl-card">
+                <span class="dot"></span>
+                <h3>2025</h3>
+                <h4>Expand to five new cities</h4>
+            </div>
+            <div class="tl-card">
+                <span class="dot"></span>
+                <h3>2026</h3>
+                <h4>Introduce smart irrigation systems</h4>
+            </div>
+            <div class="tl-card">
+                <span class="dot"></span>
+                <h3>2027</h3>
+                <h4>Achieve carbon neutrality</h4>
+            </div>
+            <div class="tl-card">
+                <span class="dot"></span>
+                <h3>2028</h3>
+                <h4>Global outreach program</h4>
             </div>
         </div>
-    </div>
+    </section>
+    <section class="after-content">
+        <h2>End of Timeline</h2>
+    </section>
     <!-- Timeline End -->
 
 
@@ -640,6 +656,23 @@
     <script src="lib/parallax/parallax.min.js"></script>
     <script src="lib/isotope/isotope.pkgd.min.js"></script>
     <script src="lib/lightbox/js/lightbox.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+        const tl = document.querySelector('.timeline');
+        const cards = gsap.utils.toArray('.tl-card');
+        gsap.to(tl, {
+            xPercent: -100 * (cards.length - 1),
+            ease: 'none',
+            scrollTrigger: {
+                trigger: '.timeline-section',
+                pin: true,
+                scrub: 1,
+                end: () => '+=' + (tl.scrollWidth - document.documentElement.clientWidth)
+            }
+        });
+    </script>
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
