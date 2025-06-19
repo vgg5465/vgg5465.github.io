@@ -563,3 +563,35 @@ h6,
         font-size: 2rem;
     }
 }
+
+/*** Timeline ***/
+.timeline-wrapper {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+}
+
+.timeline-wrapper::-webkit-scrollbar {
+    height: 8px;
+}
+
+.timeline-wrapper::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    border-radius: 10px;
+}
+
+.timeline-item {
+    flex: 0 0 250px;
+    scroll-snap-align: start;
+    background: #fff;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    margin-right: 1rem;
+    box-shadow: 0 0 45px rgba(0, 0, 0, .08);
+}
+
+.timeline-item h4 {
+    font-weight: 700;
+    margin-bottom: .5rem;
+}
